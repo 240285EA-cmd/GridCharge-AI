@@ -9,12 +9,20 @@ import json
 from datetime import datetime, timedelta
 from typing import Literal
 
+import os
+
 from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 app = FastAPI(title="GridCharge AI")
-app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:5173"], allow_methods=["*"], allow_headers=["*"])
+
+ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "https://240285EA-cmd.github.io",
+]
+
+app.add_middleware(CORSMiddleware, allow_origins=ALLOWED_ORIGINS, allow_methods=["*"], allow_headers=["*"])
 
 CONNECTORS = ["CCS2", "Type 2", "CHAdeMO", "GB/T"]
 SCENARIOS = ["Normal Day", "100 EV Surge", "Grid Overload", "High Harmonics", "Solar Available", "Charger Failure"]
