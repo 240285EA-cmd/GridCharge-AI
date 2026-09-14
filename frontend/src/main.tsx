@@ -1,9 +1,9 @@
 import React, {useEffect, useMemo, useState} from 'react'; import {createRoot} from 'react-dom/client'; import {BatteryCharging, CalendarCheck, Car, Clock3, Gauge, MapPin, ShieldCheck, Zap} from 'lucide-react'; import './styles.css';
 
-const API='http://127.0.0.1:8010/api'; type State=any; const initial:any={metrics:{load:0,capacity:500,solar:0,health:'NORMAL',utilization:0,price:0,thd:0,predicted:0,queue:0},chargers:[],queue:[],reservations:[],events:[],anomalies:[],available:0};
+const API='https://gridcharge-ai-backend.onrender.com/api'; type State=any; const initial:any={metrics:{load:0,capacity:500,solar:0,health:'NORMAL',utilization:0,price:0,thd:0,predicted:0,queue:0},chargers:[],queue:[],reservations:[],events:[],anomalies:[],available:0};
 const fmt=(v:string)=>{const [h,m]=v.split(':').map(Number); return `${((h+11)%12+1)}:${String(m).padStart(2,'0')} ${h>=12?'PM':'AM'}`};
 function App(){const [tab,setTab]=useState('Home'),[data,setData]=useState<State>(initial),[booking,setBooking]=useState<any>({model:'Tesla Model 3 Long Range',battery_capacity:75,current_soc:20,target_soc:85,connector:'CCS2',protocol:'Ultra-Fast',max_power:120,destination:'Chennai Airport',arrival:'18:30',departure:'19:30'}),[rec,setRec]=useState<any>(null),[notice,setNotice]=useState('');
-useEffect(()=>{let ws=new WebSocket('ws://127.0.0.1:8010/ws');ws.onmessage=e=>setData(JSON.parse(e.data));ws.onerror=()=>fetch(API+'/state').then(r=>r.json()).then(setData);return()=>ws.close()},[]);
+useEffect(()=>{let ws=new WebSocket('wss://gridcharge-ai-backend.onrender.com/ws');ws.onmessage=e=>setData(JSON.parse(e.data));ws.onerror=()=>fetch(API+'/state').then(r=>r.json()).then(setData);return()=>ws.close()},[]);
 const energy=useMemo(()=>Math.max(0,booking.battery_capacity*(booking.target_soc-booking.current_soc)/100).toFixed(1),[booking]);
 const change=(k:string,v:any)=>setBooking((b:any)=>({...b,[k]:v}));
 const recommend=async()=>{let r=await fetch(API+'/recommendation',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(booking)}); let d=await r.json();setRec(d); if(!r.ok)setNotice(d.detail||'Please review your EV information');};
