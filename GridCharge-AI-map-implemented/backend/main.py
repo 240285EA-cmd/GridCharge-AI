@@ -31,7 +31,7 @@ if env_origin:
 app.add_middleware(
     CORSMiddleware,
     allow_origins=list(set(ALLOWED_ORIGINS)),
-    allow_origin_regex=r"https://.*\.github\.io",
+    allow_origin_regex=r"https://.*\.(github\.io|loca\.lt)",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

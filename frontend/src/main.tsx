@@ -11,6 +11,20 @@ import './styles.css';
 
 const API = 'https://gridcharge-ai-backend.onrender.com/api';
 const LOCAL_API = 'http://127.0.0.1:8010/api';
+
+const getInitialApi = () => {
+  if (typeof window !== 'undefined') {
+    const params = new URLSearchParams(window.location.search);
+    const qApi = params.get('api');
+    if (qApi && qApi.trim()) return qApi.trim();
+  }
+  const envApi = (import.meta as any).env?.VITE_PUBLIC_API_URL;
+  if (envApi && envApi.trim()) return envApi.trim();
+  if (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+    return LOCAL_API;
+  }
+  return API;
+};
 const STATION_LOCATION = { lat: 13.0827, lng: 80.2707 };
 const DEFAULT_USER_LOC = { lat: 13.0400, lng: 80.2300 };
 
@@ -100,7 +114,7 @@ function App() {
   const [mode, setMode] = useState<'customer' | 'operator'>('customer');
   const [tab, setTab] = useState('Home');
   const [data, setData] = useState<State>(initial);
-  const [activeApi, setActiveApi] = useState<string>(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? LOCAL_API : API);
+  const [activeApi, setActiveApi] = useState<string>(getInitialApi);
 
   const [booking, setBooking] = useState<any>({
     model: 'Tesla Model 3 Long Range',
@@ -164,9 +178,14 @@ function App() {
     };
 
     try {
-      const wsUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
-        ? 'ws://127.0.0.1:8010/ws/live' 
-        : 'wss://gridcharge-ai-backend.onrender.com/ws/live';
+      let wsUrl = activeApi.replace(/\/api\/?$/, '/ws/live');
+      if (wsUrl.startsWith('https://')) {
+        wsUrl = wsUrl.replace('https://', 'wss://');
+      } else if (wsUrl.startsWith('http://')) {
+        wsUrl = wsUrl.replace('http://', 'ws://');
+      } else if (!wsUrl.startsWith('wss://') && !wsUrl.startsWith('ws://')) {
+        wsUrl = 'wss://' + wsUrl;
+      }
       
       ws = new WebSocket(wsUrl);
       ws.onmessage = e => setData(JSON.parse(e.data));
