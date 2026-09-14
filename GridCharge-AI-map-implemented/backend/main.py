@@ -15,14 +15,27 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 app = FastAPI(title="GridCharge AI")
+
 ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://localhost:5174",
     "http://127.0.0.1:5173",
     "http://127.0.0.1:5174",
-    os.getenv("FRONTEND_ORIGIN", "https://240285EA-cmd.github.io"),
+    "https://240285EA-cmd.github.io",
+    "https://240285ea-cmd.github.io",
 ]
-app.add_middleware(CORSMiddleware, allow_origins=ALLOWED_ORIGINS, allow_methods=["*"], allow_headers=["*"])
+env_origin = os.getenv("FRONTEND_ORIGIN", "").strip()
+if env_origin:
+    ALLOWED_ORIGINS.extend([env_origin, env_origin.lower(), env_origin.rstrip("/"), env_origin.lower().rstrip("/")])
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=list(set(ALLOWED_ORIGINS)),
+    allow_origin_regex=r"https://.*\.github\.io",
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 CONNECTORS = ["CCS2", "Type 2", "CHAdeMO", "GB/T"]
 SCENARIOS = ["Normal Day", "100 EV Surge", "Grid Overload", "High Harmonics", "Solar Available", "Charger Failure"]
@@ -397,8 +410,7 @@ async def reservation_action(rid: str, action: ReservationAction):
     await broadcast()
     return r
 
-@app.websocket("/ws")
-async def ws(websocket: WebSocket):
+async def handle_ws(websocket: WebSocket):
     await websocket.accept()
     clients.append(websocket)
     await websocket.send_json(state.snapshot())
@@ -408,4 +420,12 @@ async def ws(websocket: WebSocket):
     except WebSocketDisconnect:
         if websocket in clients:
             clients.remove(websocket)
+
+@app.websocket("/ws")
+async def ws_endpoint(websocket: WebSocket):
+    await handle_ws(websocket)
+
+@app.websocket("/ws/live")
+async def ws_live_endpoint(websocket: WebSocket):
+    await handle_ws(websocket)
 

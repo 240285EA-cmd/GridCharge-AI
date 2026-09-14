@@ -130,22 +130,6 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
-  // WebSocket & REST fallback
-  useEffect(() => {
-    let ws: WebSocket | null = null;
-    try {
-      const wsUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'ws://127.0.0.1:8010/ws/live' : 'wss://gridcharge-ai-backend.onrender.com/ws/live'; ws = new WebSocket(wsUrl);
-      ws.onmessage = e => setData(JSON.parse(e.data));
-      ws.onerror = () => {
-        // Fallback to REST polling
-        fetchState(activeApi);
-      };
-    } catch {
-      fetchState(activeApi);
-    }
-    return () => { if (ws) ws.close(); };
-  }, []);
-
   const fetchState = async (baseUrl: string = activeApi) => {
     try {
       const res = await fetch(`${baseUrl}/state`);
@@ -157,6 +141,45 @@ function App() {
       console.warn('Backend polling error:', e);
     }
   };
+
+  // WebSocket & REST polling fallback
+  useEffect(() => {
+    let ws: WebSocket | null = null;
+    let pollInterval: any = null;
+
+    // Initial state fetch
+    fetchState(activeApi);
+
+    const startPolling = () => {
+      fetchState(activeApi);
+      if (!pollInterval) {
+        pollInterval = setInterval(() => {
+          fetchState(activeApi);
+        }, 4000);
+      }
+    };
+
+    try {
+      const wsUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+        ? 'ws://127.0.0.1:8010/ws/live' 
+        : 'wss://gridcharge-ai-backend.onrender.com/ws/live';
+      
+      ws = new WebSocket(wsUrl);
+      ws.onmessage = e => setData(JSON.parse(e.data));
+      ws.onerror = () => {
+        startPolling();
+      };
+      ws.onclose = () => {
+        startPolling();
+      };
+    } catch {
+      startPolling();
+    }
+    return () => { 
+      if (ws) ws.close(); 
+      if (pollInterval) clearInterval(pollInterval);
+    };
+  }, [activeApi]);
 
   const energy = useMemo(() => Math.max(0, booking.battery_capacity * (booking.target_soc - booking.current_soc) / 100).toFixed(1), [booking]);
   const change = (k: string, v: any) => {
