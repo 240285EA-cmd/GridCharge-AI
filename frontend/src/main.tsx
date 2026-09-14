@@ -44,11 +44,15 @@ const destIcon = L.divIcon({
 
 type State = any;
 const initial: any = {
-  metrics: { load: 0, capacity: 500, solar: 0, health: 'NORMAL', utilization: 0, price: 0, thd: 0, predicted: 0, queue: 0 },
+  metrics: { load: 292, capacity: 500, solar: 48, health: 'NORMAL', utilization: 58, price: 10.96, thd: 2.1, predicted: 315, queue: 3 },
   chargers: [],
   queue: [],
   reservations: [],
-  registered_evs: [],
+  registered_evs: [
+    { id: 'EV-REG-001', model: 'Tesla Model 3 Long Range', battery_capacity: 75, max_power: 120, connector: 'CCS2', protocol: 'Ultra-Fast' },
+    { id: 'EV-REG-002', model: 'Hyundai Ioniq 5', battery_capacity: 72.6, max_power: 150, connector: 'CCS2', protocol: 'Ultra-Fast' },
+    { id: 'EV-REG-003', model: 'Tata Nexon EV Max', battery_capacity: 40.5, max_power: 50, connector: 'Type 2', protocol: 'AC' }
+  ],
   station_dashboard: {
     total_ports: 24,
     available: 15,
@@ -60,7 +64,7 @@ const initial: any = {
     vehicles_arriving: 3,
     vehicles_leaving: 6
   },
-  events: [],
+  events: ['Agent observing demand, renewable supply, and departure constraints.'],
   anomalies: [],
   available: 15
 };

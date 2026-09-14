@@ -1,0 +1,160 @@
+0 verbose cli E:\js\node.exe E:\js\node_modules\npm\bin\npm-cli.js
+1 info using npm@11.6.2
+2 info using node@v25.2.1
+3 silly config load:file:E:\js\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\DELL\Documents\Codex\2026-09-13\use-the-provided-ev-registration-ui\frontend\.npmrc
+5 silly config load:file:C:\Users\DELL\.npmrc
+6 silly config load:file:C:\Users\DELL\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm install
+8 verbose argv "install" "--cache" "C:\\Users\\DELL\\Documents\\Codex\\2026-09-13\\use-the-provided-ev-registration-ui\\work\\npm-cache"
+9 verbose logfile logs-max:10 dir:C:\Users\DELL\Documents\Codex\2026-09-13\use-the-provided-ev-registration-ui\work\npm-cache\_logs\2026-09-13T16_51_59_303Z-
+10 verbose logfile C:\Users\DELL\Documents\Codex\2026-09-13\use-the-provided-ev-registration-ui\work\npm-cache\_logs\2026-09-13T16_51_59_303Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:2348810240 maxSize:587202560 maxEntrySize:293601280
+13 silly idealTree buildDeps
+14 silly fetch manifest @types/react@latest
+15 silly packumentCache full:https://registry.npmjs.org/@types%2freact cache-miss
+16 http cache https://registry.npmjs.org/@types%2freact 46ms (cache hit)
+17 silly packumentCache full:https://registry.npmjs.org/@types%2freact set size:2642161 disposed:false
+18 silly fetch manifest @types/react-dom@latest
+19 silly packumentCache full:https://registry.npmjs.org/@types%2freact-dom cache-miss
+20 http fetch GET 200 https://registry.npmjs.org/@types%2freact-dom 347ms (cache miss)
+21 silly packumentCache full:https://registry.npmjs.org/@types%2freact-dom set size:undefined disposed:false
+22 silly placeDep ROOT @types/react@19.3.0 OK for:  want: latest
+23 silly placeDep ROOT @types/react-dom@19.3.0 OK for:  want: latest
+24 silly fetch manifest csstype@^3.2.2
+25 silly packumentCache full:https://registry.npmjs.org/csstype cache-miss
+26 http fetch GET 200 https://registry.npmjs.org/csstype 89ms (cache miss)
+27 silly packumentCache full:https://registry.npmjs.org/csstype set size:undefined disposed:false
+28 silly placeDep ROOT csstype@3.2.3 OK for: @types/react@19.3.0 want: ^3.2.2
+29 silly reify moves {}
+30 silly audit bulk request {
+30 silly audit   '@oxc-project/types': [ '0.149.0' ],
+30 silly audit   '@reduxjs/toolkit': [ '2.12.0' ],
+30 silly audit   '@rolldown/binding-android-arm-eabi': [ '1.2.8' ],
+30 silly audit   '@rolldown/binding-android-arm64': [ '1.2.8' ],
+30 silly audit   '@rolldown/binding-darwin-arm64': [ '1.2.8' ],
+30 silly audit   '@rolldown/binding-darwin-x64': [ '1.2.8' ],
+30 silly audit   '@rolldown/binding-freebsd-x64': [ '1.2.8' ],
+30 silly audit   '@rolldown/binding-linux-arm-gnueabihf': [ '1.2.8' ],
+30 silly audit   '@rolldown/binding-linux-arm64-gnu': [ '1.2.8' ],
+30 silly audit   '@rolldown/binding-linux-arm64-musl': [ '1.2.8' ],
+30 silly audit   '@rolldown/binding-linux-ppc64-gnu': [ '1.2.8' ],
+30 silly audit   '@rolldown/binding-linux-s390x-gnu': [ '1.2.8' ],
+30 silly audit   '@rolldown/binding-linux-x64-gnu': [ '1.2.8' ],
+30 silly audit   '@rolldown/binding-linux-x64-musl': [ '1.2.8' ],
+30 silly audit   '@rolldown/binding-openharmony-arm64': [ '1.2.8' ],
+30 silly audit   '@rolldown/binding-win32-arm64-msvc': [ '1.2.8' ],
+30 silly audit   '@rolldown/binding-win32-x64-msvc': [ '1.2.8' ],
+30 silly audit   '@rolldown/pluginutils': [ '1.0.1' ],
+30 silly audit   '@standard-schema/spec': [ '1.1.0' ],
+30 silly audit   '@standard-schema/utils': [ '0.3.0' ],
+30 silly audit   '@types/d3-array': [ '3.2.2' ],
+30 silly audit   '@types/d3-color': [ '3.1.3' ],
+30 silly audit   '@types/d3-ease': [ '3.0.2' ],
+30 silly audit   '@types/d3-interpolate': [ '3.0.4' ],
+30 silly audit   '@types/d3-path': [ '3.1.1' ],
+30 silly audit   '@types/d3-scale': [ '4.0.9' ],
+30 silly audit   '@types/d3-shape': [ '3.2.0' ],
+30 silly audit   '@types/d3-time': [ '3.0.4' ],
+30 silly audit   '@types/d3-timer': [ '3.0.2' ],
+30 silly audit   '@types/use-sync-external-store': [ '0.0.6' ],
+30 silly audit   '@typescript/typescript-aix-ppc64': [ '7.0.2' ],
+30 silly audit   '@typescript/typescript-darwin-arm64': [ '7.0.2' ],
+30 silly audit   '@typescript/typescript-darwin-x64': [ '7.0.2' ],
+30 silly audit   '@typescript/typescript-freebsd-arm64': [ '7.0.2' ],
+30 silly audit   '@typescript/typescript-freebsd-x64': [ '7.0.2' ],
+30 silly audit   '@typescript/typescript-linux-arm': [ '7.0.2' ],
+30 silly audit   '@typescript/typescript-linux-arm64': [ '7.0.2' ],
+30 silly audit   '@typescript/typescript-linux-loong64': [ '7.0.2' ],
+30 silly audit   '@typescript/typescript-linux-mips64el': [ '7.0.2' ],
+30 silly audit   '@typescript/typescript-linux-ppc64': [ '7.0.2' ],
+30 silly audit   '@typescript/typescript-linux-riscv64': [ '7.0.2' ],
+30 silly audit   '@typescript/typescript-linux-s390x': [ '7.0.2' ],
+30 silly audit   '@typescript/typescript-linux-x64': [ '7.0.2' ],
+30 silly audit   '@typescript/typescript-netbsd-arm64': [ '7.0.2' ],
+30 silly audit   '@typescript/typescript-netbsd-x64': [ '7.0.2' ],
+30 silly audit   '@typescript/typescript-openbsd-arm64': [ '7.0.2' ],
+30 silly audit   '@typescript/typescript-openbsd-x64': [ '7.0.2' ],
+30 silly audit   '@typescript/typescript-sunos-x64': [ '7.0.2' ],
+30 silly audit   '@typescript/typescript-win32-arm64': [ '7.0.2' ],
+30 silly audit   '@typescript/typescript-win32-x64': [ '7.0.2' ],
+30 silly audit   '@vitejs/plugin-react': [ '6.1.1' ],
+30 silly audit   clsx: [ '2.1.1' ],
+30 silly audit   'd3-array': [ '3.2.4' ],
+30 silly audit   'd3-color': [ '3.1.0' ],
+30 silly audit   'd3-ease': [ '3.0.1' ],
+30 silly audit   'd3-format': [ '3.1.2' ],
+30 silly audit   'd3-interpolate': [ '3.0.1' ],
+30 silly audit   'd3-path': [ '3.1.0' ],
+30 silly audit   'd3-scale': [ '4.0.2' ],
+30 silly audit   'd3-shape': [ '3.2.0' ],
+30 silly audit   'd3-time': [ '3.1.0' ],
+30 silly audit   'd3-time-format': [ '4.1.0' ],
+30 silly audit   'd3-timer': [ '3.0.1' ],
+30 silly audit   'decimal.js-light': [ '2.5.1' ],
+30 silly audit   'detect-libc': [ '2.1.2' ],
+30 silly audit   'es-toolkit': [ '1.52.0' ],
+30 silly audit   eventemitter3: [ '5.0.4' ],
+30 silly audit   fdir: [ '6.5.0' ],
+30 silly audit   fsevents: [ '2.3.3' ],
+30 silly audit   immer: [ '11.1.18' ],
+30 silly audit   internmap: [ '2.0.3' ],
+30 silly audit   lightningcss: [ '1.33.0' ],
+30 silly audit   'lightningcss-android-arm64': [ '1.33.0' ],
+30 silly audit   'lightningcss-darwin-arm64': [ '1.33.0' ],
+30 silly audit   'lightningcss-darwin-x64': [ '1.33.0' ],
+30 silly audit   'lightningcss-freebsd-x64': [ '1.33.0' ],
+30 silly audit   'lightningcss-linux-arm-gnueabihf': [ '1.33.0' ],
+30 silly audit   'lightningcss-linux-arm64-gnu': [ '1.33.0' ],
+30 silly audit   'lightningcss-linux-arm64-musl': [ '1.33.0' ],
+30 silly audit   'lightningcss-linux-x64-gnu': [ '1.33.0' ],
+30 silly audit   'lightningcss-linux-x64-musl': [ '1.33.0' ],
+30 silly audit   'lightningcss-win32-arm64-msvc': [ '1.33.0' ],
+30 silly audit   'lightningcss-win32-x64-msvc': [ '1.33.0' ],
+30 silly audit   'lucide-react': [ '1.45.0' ],
+30 silly audit   nanoid: [ '3.3.19' ],
+30 silly audit   picocolors: [ '1.1.1' ],
+30 silly audit   picomatch: [ '4.0.7' ],
+30 silly audit   postcss: [ '8.5.28' ],
+30 silly audit   react: [ '19.3.0' ],
+30 silly audit   'react-dom': [ '19.3.0' ],
+30 silly audit   'react-is': [ '19.3.0' ],
+30 silly audit   'react-redux': [ '9.3.0' ],
+30 silly audit   recharts: [ '3.10.1' ],
+30 silly audit   redux: [ '5.0.1' ],
+30 silly audit   'redux-thunk': [ '3.1.0' ],
+30 silly audit   reselect: [ '5.2.0' ],
+30 silly audit   rolldown: [ '1.2.8' ],
+30 silly audit   scheduler: [ '0.28.0' ],
+30 silly audit   'source-map-js': [ '1.2.1' ],
+30 silly audit   'tiny-invariant': [ '1.3.3' ],
+30 silly audit   tinyglobby: [ '0.2.17' ],
+30 silly audit   typescript: [ '7.0.2' ],
+30 silly audit   'use-sync-external-store': [ '1.7.0' ],
+30 silly audit   'victory-vendor': [ '37.3.6' ],
+30 silly audit   vite: [ '8.3.0' ],
+30 silly audit   '@types/react': [ '19.3.0' ],
+30 silly audit   '@types/react-dom': [ '19.3.0' ],
+30 silly audit   csstype: [ '3.2.3' ]
+30 silly audit }
+31 http cache csstype@https://registry.npmjs.org/csstype/-/csstype-3.2.3.tgz 0ms (cache hit)
+32 http cache @types/react@https://registry.npmjs.org/@types/react/-/react-19.3.0.tgz 0ms (cache hit)
+33 http cache @types/react-dom@https://registry.npmjs.org/@types/react-dom/-/react-dom-19.3.0.tgz 0ms (cache hit)
+34 silly tarball no local data for csstype@https://registry.npmjs.org/csstype/-/csstype-3.2.3.tgz. Extracting by manifest.
+35 silly tarball no local data for @types/react@https://registry.npmjs.org/@types/react/-/react-19.3.0.tgz. Extracting by manifest.
+36 silly tarball no local data for @types/react-dom@https://registry.npmjs.org/@types/react-dom/-/react-dom-19.3.0.tgz. Extracting by manifest.
+37 http fetch GET 200 https://registry.npmjs.org/@types/react-dom/-/react-dom-19.3.0.tgz 276ms (cache miss)
+38 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 298ms
+39 silly audit report {}
+40 http fetch GET 200 https://registry.npmjs.org/csstype/-/csstype-3.2.3.tgz 325ms (cache miss)
+41 http fetch GET 200 https://registry.npmjs.org/@types/react/-/react-19.3.0.tgz 341ms (cache miss)
+42 silly ADD node_modules/csstype
+43 silly ADD node_modules/@types/react-dom
+44 silly ADD node_modules/@types/react
+45 verbose cwd C:\Users\DELL\Documents\Codex\2026-09-13\use-the-provided-ev-registration-ui\frontend
+46 verbose os Windows_NT 10.0.26200
+47 verbose node v25.2.1
+48 verbose npm  v11.6.2
+49 verbose exit 0
+50 info ok
